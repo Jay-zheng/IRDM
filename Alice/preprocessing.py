@@ -1,29 +1,44 @@
 import pandas as pd
 from nltk.stem.snowball import SnowballStemmer
-from nltk.corpus import stopwords as sw
 import string
 
 # Fill in name of CSV file
-file = "train.csv"
+file = "test.csv"
 # Dataframe for the data
 data = pd.read_csv(file, encoding="ISO-8859-1")
 
+# Get stopwords from a list of stopwords
+# NLTK's stopword list does not remove some common words such as "the"
+stopwords = open("stopwords.txt",'r').readlines()
+stopwords = [x.strip() for x in stopwords]
+
 # Remove punctuation
 def remove_punct(data):
-    # Remove all punctuation using a lambda function
+    # Remove all punctuation using lambda function
     data = data.apply(
         lambda x: ''.join([i for i in x if i not in string.punctuation])
     )
     return data
 
-# Remove stopwords from the data
+# Remove stopwords.txt from the data
 def remove_stopwords(data):
     # Convert to lower case
     data = data.str.lower()
-    # Get the stopwords
-    stopwords = set(sw.words("english"))
-    # Use pandas to replace all instances of stopwords
-    data = data.replace(to_replace=stopwords, value="")
+
+    # Replace all instances of stopwords
+    index = 0
+
+    # Had to brute force with a for loop
+    for index in range(len(data)):
+        # Break up the sentence
+        sentence = data.iloc[index].split(" ")
+        # Remove stopwords
+        sentence = [word for word in sentence if word not in stopwords]
+        # Rejoin the sentence
+        sentence = " ".join(sentence)
+        # Reassign sentence
+        data.iloc[index] = sentence
+
     # Return the data
     return data
 
@@ -42,8 +57,9 @@ def preprocess(data):
     data = stem(data)
     return data
 
-# Preprocess the "product_title" and "search_term" columns of the data
+# Preprocess the columns you want
 data["product_title"] = preprocess(data["product_title"])
 data["search_term"] = preprocess(data["search_term"])
 
-data.to_csv("train_stemmed.csv", index=False)
+# Save to CSV
+data.to_csv("test_stemmed.csv", index=False)
