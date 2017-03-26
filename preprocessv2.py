@@ -7,16 +7,16 @@ import time
 import numpy as np
 import pandas as pd
 from bs4 import BeautifulSoup
-from Spell_Checker_Dict import spell_check_dict as spellcheck_dict
-from Google_Search import spell_check as spellcheck
+from Spell_Checker_Dict import spell_check_dict as spellcheck_dict # a dictionary of all words that are spelt wrong 
+from Google_Search import spell_check as spellcheck # google spell checker from kaggle kernel
 from tqdm import tqdm # really cool module for showing progress of loops
 
 
 # Load data  into dataframes
-df_train = pd.read_csv("C:/Users/JayZheng/Documents/Data Science/data mining/home-depot/data/train.csv",encoding="ISO-8859-1")
-df_test = pd.read_csv("C:/Users/JayZheng/Documents/Data Science/data mining/home-depot/data/test.csv",encoding="ISO-8859-1")
-df_pro_desc  = pd.read_csv("C:/Users/JayZheng/Documents/Data Science/data mining/home-depot/data/product_descriptions.csv")
-df_attr = pd.read_csv("C:/Users/JayZheng/Documents/Data Science/data mining/home-depot/data/attributes.csv")
+df_train = pd.read_csv(".../home-depot/data/train.csv",encoding="ISO-8859-1")
+df_test = pd.read_csv(".../home-depot/data/test.csv",encoding="ISO-8859-1")
+df_pro_desc  = pd.read_csv(".../home-depot/data/product_descriptions.csv")
+df_attr = pd.read_csv(".../home-depot/data/attributes.csv")
 
 stopwords = open("stopwords.txt",'r').readlines()
 stopwords = [x.strip() for x in stopwords]
@@ -246,7 +246,7 @@ df_attr.value = preprocess2(df_attr.value)
 
 print(" :) product attribute Data Cleaning Finished in %s minutes" % round(((time.time() - start_att_time)/60),2))
 
-df_train.to_csv('C:/Users/JayZheng/Documents/Data Science/data mining/home-depot/data/train_clean.csv')
-df_test.to_csv('C:/Users/JayZheng/Documents/Data Science/data mining/home-depot/data/test_clean.csv')
-df_pro_desc.to_csv('C:/Users/JayZheng/Documents/Data Science/data mining/home-depot/data/product_descriptions_clean.csv', index=False)
-df_attr.to_csv('C:/Users/JayZheng/Documents/Data Science/data mining/home-depot/data/attributes_clean.csv',index=False)
+df_train.to_csv('.../home-depot/data/train_clean.csv')
+df_test.to_csv('.../home-depot/data/test_clean.csv')
+df_pro_desc.to_csv('.../data/product_descriptions_clean.csv', index=False)
+df_attr.to_csv('.../data/attributes_clean.csv',index=False)
