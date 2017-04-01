@@ -46,7 +46,7 @@ df_all['query_in_title'] = df_all.apply(lambda x: utils.counter_appearance(x['se
 df_all['query_in_description'] = df_all.apply(lambda x: utils.counter_appearance(x['search_term'].split(), x['product_description'].split()), axis=1)
 df_all['query_in_attr'] = df_all.apply(lambda x: utils.counter_appearance(str(x['search_term']).split(), str(x['attr']).split()), axis=1)
 df_all['query_in_attr_title'] = df_all.apply(lambda x: utils.counter_appearance(str(x['search_term']).split(), str(x['attr_title']).split()), axis=1)
-#df_all['query_last_word_in_title'] = df_all.apply(lambda x: utils.counter_appearance(x['search_term'].split()[-1], x['product_title'].split()), axis=1)
+df_all['query_last_word_in_title'] = df_all.apply(lambda x: utils.counter_appearance(x['search_term'].split()[-1], x['product_title'].split()), axis=1)
 df_all['query_last_word_in_description'] = df_all.apply(lambda x: utils.counter_appearance(x['search_term'].split()[-1], x['product_description'].split()), axis=1)
 df_all['query_last_word_in_attr'] = df_all.apply(lambda x: utils.counter_appearance(str(x['search_term']).split()[-1], str(x['attr']).split()), axis=1)
 df_all['query_last_word_in_attr_title'] = df_all.apply(lambda x: utils.counter_appearance(str(x['search_term']).split()[-1], str(x['attr_title']).split()), axis=1)
