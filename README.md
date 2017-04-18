@@ -5,4 +5,4 @@ Summary of the project: https://www.kaggle.com/c/home-depot-product-search-relev
 
 Data can be accquired here: https://www.kaggle.com/c/home-depot-product-search-relevance/data
 
-Learning to rank models: Random Forest, Ridge Regression
+Learning to rank models experimented: Random Forest, Ridge Regression, Gradient Boosting Regression Tree,
