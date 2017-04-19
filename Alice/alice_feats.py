@@ -52,27 +52,3 @@ df["search_vs_attr_title"] = cosine_dist(data,"search_term","attr_title")
 df["relevance"] = data["relevance"]
 
 df.to_csv("alice_feats.csv",index=False,encoding="utf-8")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
